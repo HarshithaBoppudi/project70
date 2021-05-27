@@ -9,6 +9,8 @@ import AppHeader from './components/AppHeader';
 export default class App extends React.Component {
   render(){
     return(
+      
+    
     
       <AppContainer/>
      
@@ -20,14 +22,15 @@ export default class App extends React.Component {
 
 
   const tabNavigator=createBottomTabNavigator({
-  ReadStory:{screen:ReadStoryScreen},
-    WriteStory:{screen:WriteStoryScreen}
+    WriteStory:{screen:WriteStoryScreen},
+  ReadStory:{screen:ReadStoryScreen}
+   
   },
    {
     defaultNavigationOptions:({navigation})=>({
       tabBarIcon:()=>{
         const routeName=navigation.state.routeName
-        if(routeName==='WriteStoryScreen'){
+        if(routeName==='WriteStory'){
           return(
             <Image
             source={require('./assets/write.png')}
@@ -35,11 +38,11 @@ export default class App extends React.Component {
             />
           )
         }
-        else if(routeName==='ReadStoryScreen'){
+        else if(routeName==='ReadStory'){
           return(
             <Image
             source={require('./assets/read.png')}
-            style={{width:50,height:50}}
+            style={{width:40,height:40}}
             />
           )
         }
@@ -47,9 +50,4 @@ export default class App extends React.Component {
     })
   }
   )
-
-   
-  
-  
-  
-  const AppContainer=createAppContainer(tabNavigator)
+const AppContainer=createAppContainer(tabNavigator)

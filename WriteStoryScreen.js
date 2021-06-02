@@ -9,7 +9,7 @@ export default class WriteStoryScreen extends React.Component {
   constructor(){
     super()
     this.state={
-     
+     submit:false,
       title:'',
       author:'',
       story:''
@@ -23,7 +23,7 @@ export default class WriteStoryScreen extends React.Component {
       })
      
   }
-    
+  
 render(){
   return(
     <View style ={styles.container}>
@@ -60,21 +60,33 @@ render(){
         }}
         />
 
-<TouchableOpacity  style={styles.submitButton}  onPress={this.submitStory}>
+<TouchableOpacity  style={styles.submitButton}  onPress={()=>{
+  this.submitStory
+  this.setState({
+    submit:true
+  })
+}}>
        
           <Text style={styles.submitButtonText}>Submit</Text>
+          
+    
          
         </TouchableOpacity>
-
+         
      
 </KeyboardAvoidingView>
+if(submit===true){
+  alert('story is submitted')
+}
         
    </View>
+  
 
 
   
   )
 }
+
 
 }
 const styles=StyleSheet.create({

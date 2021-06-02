@@ -1,25 +1,40 @@
 import * as React from 'react';
-import { View, StyleSheet, Button,TextInput,Text,TouchableOpacity,Image } from 'react-native';
+import { View, StyleSheet, Button,TextInput,Text,TouchableOpacity,Image,KeyboardAvoidingView ,Alert} from 'react-native';
 import AppHeader from '../components/AppHeader';
-
+import db from '../config'
+import firebase from 'firebase'
+import * as  Permissions from 'expo-permissions'
 
 export default class WriteStoryScreen extends React.Component {
   constructor(){
     super()
     this.state={
-      text:''
+     
+      title:'',
+      author:'',
+      story:''
     }
   }
+  submitStory=()=>{
+     db.collection('stories').add({
+        title:this.state.title,
+        author:this.state.author,
+        story:this.state.story
+      })
+     
+  }
+    
 render(){
   return(
     <View style ={styles.container}>
       <AppHeader/>
+      <KeyboardAvoidingView  style={styles.container} behavior='padding' enabled>
     
     <TextInput style={styles.inputBox}
         placeholder='Title Of The Story'
          onChangeText={(text)=>{
             this.setState({
-         text:text
+         title:text
             })
         }}
         />
@@ -29,25 +44,30 @@ render(){
         placeholder='Author Of The Story'
          onChangeText={(text)=>{
             this.setState({
-         text:text
+         author:text
             })
         }}
         />
 
 <TextInput style={styles.inputBox3}
         placeholder='Write Your Story'
+        multiline
+        numberOfLines={8}
          onChangeText={(text)=>{
             this.setState({
-         text:text
+         story:text
             })
         }}
         />
 
-<TouchableOpacity  style={styles.submitButton}>
-        
+<TouchableOpacity  style={styles.submitButton}  onPress={this.submitStory}>
+       
           <Text style={styles.submitButtonText}>Submit</Text>
+         
         </TouchableOpacity>
 
+     
+</KeyboardAvoidingView>
         
    </View>
 

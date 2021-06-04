@@ -9,7 +9,7 @@ export default class WriteStoryScreen extends React.Component {
   constructor(){
     super()
     this.state={
-     submit:false,
+     
       title:'',
       author:'',
       story:''
@@ -21,7 +21,8 @@ export default class WriteStoryScreen extends React.Component {
         author:this.state.author,
         story:this.state.story
       })
-     
+      alert('story is submited')
+      
   }
   
 render(){
@@ -29,7 +30,8 @@ render(){
     <View style ={styles.container}>
       <AppHeader/>
       <KeyboardAvoidingView  style={styles.container} behavior='padding' enabled>
-    
+      
+          
     <TextInput style={styles.inputBox}
         placeholder='Title Of The Story'
          onChangeText={(text)=>{
@@ -60,12 +62,7 @@ render(){
         }}
         />
 
-<TouchableOpacity  style={styles.submitButton}  onPress={()=>{
-  this.submitStory
-  this.setState({
-    submit:true
-  })
-}}>
+<TouchableOpacity  style={styles.submitButton}  onPress={this.submitStory}>
        
           <Text style={styles.submitButtonText}>Submit</Text>
           
@@ -75,14 +72,11 @@ render(){
          
      
 </KeyboardAvoidingView>
-if(submit===true){
-  alert('story is submitted')
-}
+
         
    </View>
   
-
-
+ 
   
   )
 }

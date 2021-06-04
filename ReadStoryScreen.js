@@ -4,6 +4,29 @@ import {ScrollView} from 'react-native-gesture-handler'
 import db from '../config'
 
 export default class ReadStoryScreen extends React.Component {
+  constructor(){
+    super()
+    this.state={
+      allStories:[],
+     search:''
+     
+    }
+  }
+  componentDidMount=async()=>{
+    const transactions=await db.collection('bedTimeStories').limit(10).get()
+    transactions.docs.map((doc)=>{
+        this.setState({
+          allStories:[],
+          
+        })
+    })
+  }
+  searchFilter=async(text)=>{
+          var enteredText=text.split('')
+          
+
+
+  }
 render(){
   return(
     <View>
